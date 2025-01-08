@@ -16,7 +16,7 @@ This task involves understanding how to execute a C program within the RISC-V en
 <details> <summary>Click here to view the results</summary>
 
 
-### Sample C Program Code:
+### 1. Sample C Program Code:
 ```c
 #include <stdio.h>
 int main() {
@@ -32,14 +32,14 @@ int main() {
 
 
 
-### Compilation and Result
+### 2. Compilation and Result
 ![screenshot-4](https://github.com/user-attachments/assets/06afcca1-f39b-4521-902d-7f3ca5bbfe7b)
 
 
-### Identifying the Main Section
+### 3. Identifying the Main Section
 ![screenshot-5](https://github.com/user-attachments/assets/42f6541c-4816-437a-9eb6-b9717d51f325)
 
 
-### Calculate the Total Addresses
+### 4. Calculate the Total Addresses
 ![screenshot-6](https://github.com/user-attachments/assets/f3ca4b90-454f-432c-8f15-80ae0b8ca3d5)
 
