@@ -5,7 +5,7 @@ RISC-V is an open-standard instruction set architecture (ISA) rooted in the prin
 #### -  Name: Akash V Kashyap
 #### - College: Dayananda Sagar College of Engineering, Bengalore 560078
 #### - Email ID: akashvkashyap@gmail.com
-#### - GitHub Profile: Akash-V-Kashyap
+#### - GitHub Profile: Akash-V-Kashyap 
 #### - LinkedIN Profile: [Akash V Kashyap](https://www.linkedin.com/in/akash-v-kashyap-336003261/)
 
 ## 
