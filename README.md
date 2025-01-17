@@ -172,3 +172,158 @@ spike -d pk sum1ton.o
 ```
 ![Screenshot-11](https://github.com/user-attachments/assets/16ea5456-ee99-4a5a-b26a-344462faeb2d)
 </details>
+
+##
+## Task 3
+Analyzing RISC-V instruction types (R, I, S, B, U, J), decode 15 unique instructions from `riscv-objdump` to their 32-bit binary and hexadecimal formats.
+<details> <summary>Click here to view the results</summary>
+
+##
+### Step 1: Understand the RISC-V Instruction Types
+1. Identify and understand the six RISC-V instruction types: R, I, S, B, U, and J.
+2. Focus on how these types are formatted in terms of opcode, function fields, and operands.
+
+##
+### Step 2: Extract 15 Unique RISC-V Instructions
+1. Use riscv-objdump on your application code:
+- Run the following command to disassemble your compiled RISC-V application:
+```bash
+riscv-objdump -d <application_binary>
+```
+2. Locate 15 unique instructions and note their assembly representation.
+
+##
+### Step 3: Decode Instructions to 32-Bit Formats
+1. For each of the 15 instructions:
+- Determine the 32-bit binary format using the RISC-V specification.
+- Include the opcode, funct3, funct7, and other relevant fields based on their instruction types.
+
+### Here's the analysis:
+
+#### 1. Instruction: `LUI a2, 0x1` 
+   - **Address:** `100b0`.
+   - **Hexadecimal:** `00001637`.
+   - **Type:** U-type (LUI).
+   - **Opcode:** `0110111`. 
+   - **Meaning:** Load the upper 20 bits of the immediate `0x1` into `a2`.
+
+#### 2. Instruction: `AUIPC sp, 0x2`
+   - **Address:** `100b4`
+   - **Hexadecimal:** `00002117`.  
+   - **Type:** U-type (AUIPC). 
+   - **Opcode:** `0010111`.  
+   - **Meaning:** Add the upper 20 bits of `0x2` to the program counter and store in `sp`.
+
+#### 3. Instruction: `ADDI a0, sp, -16` 
+   - **Address:** `100b8`.
+   - **Hexadecimal:** `FF011513`.
+   - **Type:** I-type (ADDI).
+   - **Opcode:** `0010011`.
+   - **Meaning:** Add the immediate value `-16` to `sp` and store the result in `a0`.
+
+#### 4. Instruction: `ADDI a2, zero, 132`
+   - **Address:** `100bc`. 
+   - **Hexadecimal:** `08400613`.  
+   - **Type:** I-type (ADDI).  
+   - **Opcode:** `0010011`. 
+   - **Meaning:** Load the immediate value `132` into `a2`.
+
+#### 5. Instruction: `ADDI a0, a0, 384`
+   - **Address:** `100c0`.  
+   - **Hexadecimal:** `18055113`.  
+   - **Type:** I-type (ADDI).  
+   - **Opcode:** `0010011`. 
+   - **Meaning:** Add the immediate value `384` to the value in `a0`.
+
+#### 6. Instruction: `SD a0, 8(sp)`
+   - **Address:** `100c4`.    
+   - **Hexadecimal:** `00113423`.  
+   - **Type:** S-type (SD).  
+   - **Opcode:** `0100011`.  
+   - **Meaning:** Store the value in `a0` at memory location `sp + 8`.
+
+#### 7. Instruction: `JAL ra, <printf>` 
+   - **Address:** `100c8`. 
+   - **Hexadecimal:** `340000EF`.  
+   - **Type:** J-type (JAL).  
+   - **Opcode:** `1101111`.  
+   - **Meaning:** Jump to the address of the `printf` function and store the return address in `ra`.
+
+#### 8. Instruction: `RET` 
+   - **Address:** `100cc`.    
+   - **Hexadecimal:** `00008067`.  
+   - **Type:** I-type (JALR).  
+   - **Opcode:** `1100111`.  
+   - **Meaning:** Return to the caller by jumping to the address in `ra`.
+
+#### 9. Instruction: `AUIPC a5, 0xFFFFF`
+   - **Address:** `100e0`.  
+   - **Hexadecimal:** `FFF00797`.  
+   - **Type:** U-type (AUIPC).  
+   - **Opcode:** `0010111`.  
+   - **Meaning:** Add the upper 20 bits of `0xFFFFF` to the program counter and store in `a5`.
+
+#### 10. Instruction: `ADDI a5, a5, -224`
+   - **Address:** `100e4`.  
+   - **Hexadecimal:** `F2078793`.  
+   - **Type:** I-type (ADDI).  
+   - **Opcode:** `0010011`.  
+   - **Meaning:** Add the immediate value `-224` to the value in `a5`.
+
+#### 11. **Instruction:** `BEQ a5, zero, <target>` 
+   - **Address:** `100e8`.    
+   - **Hexadecimal:** `00078063`.  
+   - **Type:** B-type (BEQ).  
+   - **Opcode:** `1100011`.  
+   - **Meaning:** Branch to `<target>` if `a5` equals `0`.
+
+#### 12. Instruction: `AUIPC a0, 0x5`
+   - **Address:** `100ec`.    
+   - **Hexadecimal:** `00050517`.  
+   - **Type:** U-type (AUIPC).  
+   - **Opcode:** `0010111`.  
+   - **Meaning:** Add the upper 20 bits of `0x5` to the program counter and store in `a0`.
+
+#### 13. **Instruction:** `ADDI a0, a0, 272` 
+   - **Address:** `100f0`.   
+   - **Hexadecimal:** `11055113`.  
+   - **Type:** I-type (ADDI).  
+   - **Opcode:** `0010011`.  
+   - **Meaning:** Add the immediate value `272` to the value in `a0`.
+
+#### 14. **Instruction:** `ADDI gp, gp, -1780` 
+   - **Address:** `10104`.  
+   - **Hexadecimal:** `9C181293`.  
+   - **Type:** I-type (ADDI).  
+   - **Opcode:** `0010011`.  
+   - **Meaning:** Add the immediate value `-1780` to the value in `gp`.
+
+#### 15. **Instruction:** `AUIPC gp, 0x13`
+   - **Address:** `10100`.   
+   - **Hexadecimal:** `00013197`.  
+   - **Type:** U-type (AUIPC).  
+   - **Opcode:** `0010111`.  
+   - **Meaning:** Add the upper 20 bits of `0x13` to the program counter and store in `gp`.
+
+### Here is the information presented in a table format:
+
+| **Addr**  | **Instruction**        | **Hex**     | **Binary**                   | **Type** | **Opcode** |
+|-----------|------------------------|-------------|------------------------------|----------|------------|
+| `100b0`   | `LUI a2, 0x1`          | `00001637`  | `00000000000000000001011000110111` | U-type   | `0110111`   |
+| `100b4`   | `AUIPC sp, 0x2`        | `00002117`  | `00000000000000000010000100010111` | U-type   | `0010111`   |
+| `100b8`   | `ADDI a0, sp, -16`     | `FF011513`  | `11111111000000010001010100010011` | I-type   | `0010011`   |
+| `100bc`   | `ADDI a2, zero, 132`   | `08400613`  | `00001000010000000000011000010011` | I-type   | `0010011`   |
+| `100c0`   | `ADDI a0, a0, 384`     | `18055113`  | `00011000000001010101000100010011` | I-type   | `0010011`   |
+| `100c4`   | `SD a0, 8(sp)`         | `00113423`  | `00000000000100010011010000100011` | S-type   | `0100011`   |
+| `100c8`   | `JAL ra, <printf>`     | `340000EF`  | `00110100000000000000000011101111` | J-type   | `1101111`   |
+| `100cc`   | `RET`                  | `00008067`  | `00000000000000001000000001100111` | I-type   | `1100111`   |
+| `100e0`   | `AUIPC a5, 0xFFFFF`    | `FFF00797`  | `11111111111100000000011110010111` | U-type   | `0010111`   |
+| `100e4`   | `ADDI a5, a5, -224`    | `F2078793`  | `11110010000001111000011110010011` | I-type   | `0010011`   |
+| `100e8`   | `BEQ a5, zero, target` | `00078063`  | `00000000000001111000000001100011` | B-type   | `1100011`   |
+| `100ec`   | `AUIPC a0, 0x5`        | `00050517`  | `00000000000001010000010100010111` | U-type   | `0010111`   |
+| `100f0`   | `ADDI a0, a0, 272`     | `11055113`  | `00010001000001010101000100010011` | I-type   | `0010011`   |
+| `10104`   | `ADDI gp, gp, -1780`   | `9C181293`  | `10011100000110000001001010010011` | I-type   | `0010011`   |
+| `10100`   | `AUIPC gp, 0x13`       | `00013197`  | `00000000000000010011000110010111` | U-type   | `0010111`   |
+
+![Screenshot-14](https://github.com/user-attachments/assets/894f1528-6dd9-4adf-a121-f60d9b8c2995)
+
