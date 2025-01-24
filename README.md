@@ -379,10 +379,8 @@ gedit akash_rv32i_tb.v
 ### Step 3: Add Code to Files 
 - Copy the required Verilog and testbench code from the reference GitHub repository and paste it into the respective files.
 
-### Verilog Code :
-
 ##
-### Step 4: Simulate the Code**  
+### Step 4: Simulate the Code
 - To compile and simulate the Verilog code, run:  
 ```bash
 iverilog -o akash_rv32i akash_rv32i.v akash_rv32i_tb.v  
@@ -390,11 +388,13 @@ iverilog -o akash_rv32i akash_rv32i.v akash_rv32i_tb.v
 ```
 
 ##
-### Step 5: View the Simulation Waveform in GTKWave**  
+### Step 5: View the Simulation Waveform in GTKWave
 - To visualize the waveform, execute:  
 ```bash
 gtkwave akash_rv32i.vcd
 ```
+
+![Screenshot-27](https://github.com/user-attachments/assets/03766f17-28d5-4fe7-a246-c592525edc9a)
 
 ##
 ### Output Waveforms
