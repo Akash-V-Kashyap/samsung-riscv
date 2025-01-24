@@ -326,4 +326,166 @@ riscv-objdump -d <application_binary>
 | `10100`   | `AUIPC gp, 0x13`       | `00013197`  | `00000000000000010011000110010111` | U-type   | `0010111`   |
 
 ![Screenshot-14](https://github.com/user-attachments/assets/894f1528-6dd9-4adf-a121-f60d9b8c2995)
+</details>
 
+##
+## Task 4
+Performing a functional simulation of a RISC-V Core using the Verilog netlist and testbench, including waveform capture
+<details> <summary>Click here to view the results</summary>
+
+##
+### Overview of Icarus Verilog and GTKWave
+
+- **`Icarus Verilog`** is a popular open-source Verilog simulation and synthesis tool that supports a wide range of Verilog standards. It is used to simulate and test hardware designs before implementation.
+- **`GTKWave`** is a versatile waveform viewer compatible with Unix and Windows systems. It supports viewing signal activity from simulation output files such as VCD (Value Change Dump) and EVCD (Extended Value Change Dump), providing an intuitive interface for debugging and analysis.
+
+##
+### Installing Required Tools  
+
+#### 1. Install `GTKWave` waveform viewer
+To install GTKWave, execute the following commands in the terminal:
+```bash
+sudo apt update
+sudo apt install gtkwave
+```
+
+#### 2. Install `Icarus Verilog` simulation tool  
+To install Icarus Verilog, run the following command:  
+```bash
+sudo apt-get install iverilog  
+```
+
+![Screenshot-15](https://github.com/user-attachments/assets/6e318b23-9497-4b50-96df-fe14756fdbb6)
+
+##
+### Steps for Performing Functional Simulation of RISC-V CORE 
+
+##
+### Step 1: Create a new directory  
+- Use the following command to create a directory with your name:  
+```bash
+mkdir <your_name>
+```
+
+##
+### Step 2: Create Verilog and Testbench Files  
+- Inside the directory, create two files using the `gedit` command:  
+```bash
+gedit akash_rv32i.v
+gedit akash_rv32i_tb.v
+```
+
+##
+### Step 3: Add Code to Files 
+- Copy the required Verilog and testbench code from the reference GitHub repository and paste it into the respective files.
+
+### Verilog Code :
+
+##
+### Step 4: Simulate the Code**  
+- To compile and simulate the Verilog code, run:  
+```bash
+iverilog -o akash_rv32i akash_rv32i.v akash_rv32i_tb.v  
+./akash_rv32i
+```
+
+##
+### Step 5: View the Simulation Waveform in GTKWave**  
+- To visualize the waveform, execute:  
+```bash
+gtkwave akash_rv32i.vcd
+```
+
+##
+### Output Waveforms
+
+##
+### Instruction - 1: `ADD R6, R1, R2`
+   1. **Address**: `0x02208300`
+   2. **Operation**: `r6 = r1 + r2`
+   3. **Result**: `REG[7] = 1 + 2 = 3`
+
+![Screenshot-16](https://github.com/user-attachments/assets/ea5a91c7-020c-4b46-8f66-329b234d223a)
+
+##
+### Instruction - 2: `SUB R7, R1, R2`
+   1. **Address**: `0x02209380` 
+   2. **Operation**: `r7 = r1 - r2`  
+   3. **Result**: `REG[7] = 1 - 2 = -1`
+
+![Screenshot-17](https://github.com/user-attachments/assets/c3b124e6-7935-440c-bc51-eedf21f6989f)
+
+##
+### Instruction - 3: `AND R8, R1, R3`
+   1. **Address**: `0x0230A400`
+   2. **Operation**: `r8 = r1 & r3`  
+   3. **Result**: `REG[8] = 1 & 3 = 1`
+
+![Screenshot-18](https://github.com/user-attachments/assets/ed8ca11a-3a55-48ec-be04-5a0d0803ede6)
+
+##
+### Instruction - 4: `OR R9, R2, R5`
+   1. **Address**: `0x02513480`
+   2. **Operation**: `r9 = r2 | r5`  
+   3. **Result**: `REG[9] = 2 | 5 = 7`
+
+![Screenshot-19](https://github.com/user-attachments/assets/cb1ea788-4882-40e7-9aa9-a9a0ac8ca719)
+
+##
+### Instruction - 5: `XOR R10, R1, R4`
+   1. **Address**: `0x0240C500`
+   2. **Operation**: `r10 = r1 ^ r4`  
+   3. **Result**: `REG[10] = 1 ^ 4 = 5`
+
+![Screenshot-20](https://github.com/user-attachments/assets/09b026bb-cfa6-49a9-88a4-b3fd9cd9955a)
+
+##
+### Instruction - 6: `SLT R11, R2, R4`
+   1. **Address**: `0x02415580`
+   2. **Operation**: `r11 = (r2 < r4) ? 1 : 0`  
+   3. **Result**: `REG[11] = (2 < 4) = 1`
+
+![Screenshot-21](https://github.com/user-attachments/assets/8d1eb180-5e19-4aaa-9dea-3b70abd07fc3)
+
+##
+### Instruction - 7: `ADDI R12, R4, 5`
+   1. **Address**: `0x00520600`
+   2. **Operation**: `r12 = r4 + 5`  
+   3. **Result**: `REG[12] = 4 + 5 = 9`
+
+![Screenshot-22](https://github.com/user-attachments/assets/8e7b340f-6939-45de-b844-fc9a7064ae93)
+
+##
+### Instruction - 8: `SW R3, R1, 2`
+   1. **Address**: `0x00209181`
+   2. **Operation**: Store `r3` at `DM[r1 + 2]`  
+   3. **Result**: `DM[3] = REG[3] = 3`
+
+![Screenshot-23](https://github.com/user-attachments/assets/95557081-a790-40be-9442-9bfea0a262c1)
+
+##
+### Instruction - 9: `LW R13, R1, 2`
+   1. **Address**: `0x00208681` 
+   2. **Operation**: Load `DM[r1 + 2]` into `r13`  
+   3. **Result**: `REG[13] = DM[3] = 3`
+
+![Screenshot-24](https://github.com/user-attachments/assets/2fde8f1c-b949-4792-84b2-91c67e9b7351)
+
+##
+### Instruction - 10: `BEQ R0, R0, 15`
+   1. **Address**: `0x00F00002` 
+   2. **Operation**: `NPC = 15` (always true, skips next instructions)  
+   3. **Result**: `REG[13] = DM[3] = 3`
+
+![Screenshot-24](https://github.com/user-attachments/assets/2fde8f1c-b949-4792-84b2-91c67e9b7351)
+
+##
+### Instruction - 11: `ADD R14, R2, R2`
+   1. **Address**: `0x00210700`
+   2. **Operation**: `r14 = r2 + r2`  
+   3. **Result**: `REG[14] = 2 + 2 = 4`
+
+![Screenshot-25](https://github.com/user-attachments/assets/75509783-98fd-42a7-8b9d-69492811774d)
+
+## Full Waveform:
+![Screenshot-26](https://github.com/user-attachments/assets/91196594-6177-4726-a438-9d0e51bc77d0)
