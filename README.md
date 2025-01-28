@@ -489,3 +489,149 @@ gtkwave akash_rv32i.vcd
 
 ## Full Waveform:
 ![Screenshot-26](https://github.com/user-attachments/assets/91196594-6177-4726-a438-9d0e51bc77d0)
+
+</details>
+
+##
+## Task 5
+Project Implementation Using VSDSquadron Mini CH32V003X
+<details> <summary>Click here to view the results</summary>
+
+##
+## Implementing Bluetooth Controlled LED using VSDSquadron Mini
+
+### Overview
+
+This project focuses on remotely controlling an LED using Bluetooth technology, with the VSDSquadron Mini development board serving as the central controller. The VSDSquadron Mini is a compact, feature-rich microcontroller board designed for rapid prototyping and embedded systems development. It supports various communication protocols, including Bluetooth, making it ideal for wireless control applications.
+
+The system employs a Bluetooth module (e.g., HC-05) that connects to a mobile device running a Bluetooth control app. The app sends control signals to the Bluetooth module, which communicates with the VSDSquadron Mini. The microcontroller processes these commands and toggles the LED on or off based on the received signal. This project showcases the practical use of Bluetooth communication in embedded systems for simple, remote control tasks.
+
+##
+### Components Required
+
+1. **VSDSquadron Mini Development Board** – Microcontroller board for controlling the system.
+2. **Bluetooth Module (HC-05 or HC-06)** – For wireless communication between the mobile device and the microcontroller.
+3. **LED** – Light-emitting diode to be controlled (on/off).
+4. **Bluetooth Control App** – Mobile app to send ON/OFF commands to the Bluetooth module.
+
+##
+### Component Desciption
+
+### VSD_Squadron-mini
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/10fd48b4-2eb5-4212-b565-4de7709f4060" alt="Screeshot-27">
+</p>
+
+  - **Description:** A microcontroller board with various digital and analog I/O pins.
+  - **Pins:** PD0, PD6, PD7, GND, 3.3V, PA2, PA1, PC0, PC1, PC5, PC4, PC3, PC6, SWCLK, PC2, SWDIO, RX, RST, TX, PD5, PD4, PD3, PD2, PD1, PC7, 5V
+  - **Purpose:** Acts as the central processing unit of the circuit, controlling the LED and interfacing with the HC-05 Bluetooth module.
+
+
+### HC-05 Bluetooth Module
+  - **Description:** A Bluetooth module that allows for wireless communication.
+  - **Pins:** Key, VCC, TXD, RXD, State, GND
+  - **Purpose:** Receives Bluetooth commands from an external device and sends them to the microcontroller.
+
+### LED: Two Pin (Any color)
+  - **Description:** A simple red LED with an anode and cathode.
+  - **Pins:** cathode, anode
+  - **Purpose:** Provides visual feedback by lighting up when the microcontroller sends a signal.
+
+##
+### Circuit Diagram:
+<p align="center">
+<img width=800 src="https://github.com/user-attachments/assets/6fc4d87f-445a-45cd-b794-79030b509c7c" alt="Screenshot-28">
+</p>
+
+##
+### Wiring details
+
+### VSD_Squadron-mini
+- PD0 connected to the cathode of the LED.
+- GND connected to the anode of the LED.
+- RX connected to TXD of the HC-05 Bluetooth Module.
+- TX connected to RXD of the HC-05 Bluetooth Module.
+- 3.3V connected to VCC of the HC-05 Bluetooth Module.
+- GND connected to GND of the HC-05 Bluetooth Module.
+
+### HC-05 Bluetooth Module
+- TXD connected to RX of the VSD_Squadron-mini.
+- RXD connected to TX of the VSD_Squadron-mini.
+- VCC connected to 3.3V of the VSD_Squadron-mini.
+- GND connected to GND of the VSD_Squadron-mini.
+
+### LED: Two Pin
+- cathode connected to GND of the VSD_Squadron-mini.
+- anode connected to PD0 of the VSD_Squadron-mini.
+
+##
+### Pinout Table
+Here is the pinout table based on our connections:
+
+| **Component**           | **Pin on VSD_Squadron-mini**    | **Pin on HC-05 Bluetooth Module** | **Pin on LED**        |
+|-------------------------|---------------------------------|----------------------------------|-----------------------|
+| **LED (Anode)**          | PD0                             | -                                | -                     |
+| **LED (Cathode)**        | GND                             | -                                | -                     |
+| **HC-05 (TXD)**          | RX                              | -                                | -                     |
+| **HC-05 (RXD)**          | TX                              | -                                | -                     |
+| **HC-05 (VCC)**          | 3.3V                            | VCC                              | -                     |
+| **HC-05 (GND)**          | GND                             | GND                              | -                     |
+| **VSD_Squadron-mini (PD0)** | PD0                           | -                                | Anode of LED          |
+| **VSD_Squadron-mini (GND)** | GND                           | -                                | Cathode of LED        |
+| **VSD_Squadron-mini (RX)** | RX                             | TXD                              | -                     |
+| **VSD_Squadron-mini (TX)** | TX                             | RXD                              | -                     |
+
+This table summarizes the pin connections between the VSD_Squadron-mini, HC-05 Bluetooth module, and the LED.
+
+##
+## How to Program?
+
+### Program Code:
+```c
+
+const int ledPin = PD0; // LED connected to digital pin PD0 
+
+void setup() {
+  pinMode(ledPin, OUTPUT); // Initialize the LED pin as an output
+  Serial.begin(9600); // Initialize serial communication at 9600 baud
+}
+
+void loop() {
+  if (Serial.available() > 0) { // Check if data is available to read
+    char command = Serial.read(); // Read the incoming byte
+    if (command == '1') {
+      digitalWrite(ledPin, HIGH); // Turn the LED on
+    } else if (command == '0') {
+      digitalWrite(ledPin, LOW); // Turn the LED off
+    }
+  }
+}
+```
+
+Here's a brief explanation of the code:
+
+1. **Pin Initialization:**
+   - `ledPin` is set to `PD0`, where the LED is connected.
+   - `pinMode(ledPin, OUTPUT)` initializes the LED pin as an output pin.
+
+2. **Serial Communication:**
+   - `Serial.begin(9600)` sets up the serial communication at a baud rate of 9600, allowing data to be sent from a mobile device via Bluetooth to the microcontroller.
+   
+3. **Main Loop:**
+   - The `loop()` function continuously checks if any data is available on the serial port.
+   - If data is available (`Serial.available() > 0`), it reads the incoming byte (`Serial.read()`).
+   - If the received byte is `'1'`, it turns the LED on (`digitalWrite(ledPin, HIGH)`).
+   - If the received byte is `'0'`, it turns the LED off (`digitalWrite(ledPin, LOW)`).
+
+To use this code:
+- The Bluetooth module (HC-05) will send '1' or '0' based on the user's input from the mobile app.
+- The **VSD_Squadron-mini** will receive the commands via serial communication and control the LED accordingly.
+
+This setup works well for basic remote control applications via Bluetooth.
+
+##
+### Application video
+[video Link]()
+
+</details>
