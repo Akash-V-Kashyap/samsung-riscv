@@ -629,9 +629,83 @@ To use this code:
 - The **VSD_Squadron-mini** will receive the commands via serial communication and control the LED accordingly.
 
 This setup works well for basic remote control applications via Bluetooth.
+</details>
 
 ##
-### Application video
-[video Link]()
+## Task 6
+Video Link of Project Demo Using VSDSquadron Mini CH32V003X
+<details> <summary>Click here to view the results</summary>
 
+##
+### Finalised Code:
+```c
+
+const int ledPin = PD0; // LED connected to digital pin PD0 
+
+void setup() {
+  pinMode(ledPin, OUTPUT); // Initialize the LED pin as an output
+  Serial.begin(9600); // Initialize serial communication at 9600 baud
+}
+
+void loop() {
+  if (Serial.available() > 0) { // Check if data is available to read
+    char command = Serial.read(); // Read the incoming byte
+    if (command == '1') {
+      digitalWrite(ledPin, HIGH); // Turn the LED on
+    } else if (command == '0') {
+      digitalWrite(ledPin, LOW); // Turn the LED off
+    }
+  }
+}
+```
+
+##
+### Application Demo video
+[Project video Link](https://drive.google.com/drive/folders/1IfKl51dHXLxlT9qCbnGNXfxsa57pvIn1?usp=sharing)
+
+</details>
+
+##
+## References
+<details> <summary>Click here to view the references</summary>
+Here are some references for tasks that you can use:
+
+1. **Task 1 - RISC-V Toolchain and Setup**:
+   - [RISC-V Toolchain Installation Guide Video](https://1drv.ms/v/s!Ai4WW_jutenghrYpUsL_MLKJDSLVyg?e=gdA9TW).
+   - [Lab Video References](https://1drv.ms/v/s!Ai4WW_jutengioJdZ78uhSPF1aH--w?e=FOv6oe).
+   - [Sample GitHub Repository for Reference](https://github.com/maazm007/vsdsquadron-mini-internship).
+
+2. **Task 2 - SPIKE Simulation and Compiler Optimization**:
+   - [SPIKE Simulation Video](https://1drv.ms/v/s!Ai4WW_jutengg7dmZwxQmBY-JEGihg?e=A4ASgZ).
+   - [Sample GitHub Repository](https://github.com/maazm007/vsdsquadron-mini-internship).
+
+3. **Task 3 - RISC-V Instruction Analysis**:
+   - [RISC-V Specifications](https://riscv.org/specifications/ratified/).
+   - [Decoding RISC-V Instructions Guide](https://github.com/AnoushkaTripathi/VSD_SQUADRON_MINI_RISCV_RESEARCH_INTERNSHIP?tab=readme-ov-file#decoding-risc-v-instructions-a-visual-guide).
+
+4. **Task 4 - Functional Simulation of RISC-V Core**:
+   - [RISC-V Core Verilog Netlist](https://github.com/vinayrayapati/rv32i/blob/main/iiitb_rv32i.v).
+   - [Testbench for RISC-V Core](https://github.com/vinayrayapati/rv32i/blob/main/iiitb_rv32i_tb.v).
+   - [Functional Simulation Reference Repo](https://github.com/vinayrayapati/rv32i/).
+
+5. **Task 5 - Documentation and Visuals**:
+   - [Smart Door Example](https://www.vlsisystemdesign.com/smart-door-using-ir-sensor-and-servo-motor/).
+   - [Mini Internship GitHub Repository](https://github.com/maazm007/vsdsquadron-mini-internship).
+
+6. **Task 6 - Final Code Submission**:
+   - Use your project’s GitHub repository to showcase the application. Example reference: [Mini Internship GitHub Repo](https://github.com/maazm007/vsdsquadron-mini-internship).
+  
+</details>
+
+##
+## Acknowledgement
+<details><summary>Click here to view</summary>
+
+<h4>
+I would like to extend my heartfelt gratitude to Kunal Ghosh Sir for his invaluable guidance and mentorship throughout this learning journey. His expertise and commitment to nurturing talent in the VLSI and semiconductor domains have been truly inspiring. 
+<br><br>
+I am also immensely grateful to Samsung for organizing the RISC-V Talent Development Program and providing this incredible opportunity to learn and explore cutting-edge technologies in the semiconductor industry. This program has been a transformative experience, equipping me with hands-on skills and deep insights into RISC-V architecture and its practical applications.
+<br><br>
+Thank you for enabling aspiring engineers like me to grow and contribute to the semiconductor ecosystem.
+</h4>
 </details>
